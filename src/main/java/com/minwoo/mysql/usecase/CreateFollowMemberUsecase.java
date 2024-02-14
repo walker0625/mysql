@@ -1,4 +1,4 @@
-package com.minwoo.mysql.application.usecase;
+package com.minwoo.mysql.usecase;
 
 import com.minwoo.mysql.domain.follow.service.FollowWriteService;
 import com.minwoo.mysql.domain.member.dto.response.MemberDto;
