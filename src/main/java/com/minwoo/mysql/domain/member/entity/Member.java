@@ -8,6 +8,7 @@ import lombok.ToString;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -38,7 +39,7 @@ public class Member {
         this.createdAt = createdAt == null ? LocalDateTime.now() : createdAt;
     }
 
-    public void validateTenLength(String nickname) {
+    private void validateTenLength(String nickname) {
         Assert.isTrue(nickname.length() <= NAME_MAX_LENGTH, "닉네임은 10자를 넘을 수 없습니다.");
     }
 
@@ -49,6 +50,12 @@ public class Member {
                             .nickname(this.nickname)
                             .birthday(this.birthday)
                         .build();
+    }
+
+    public void updateNickname(String nickname) {
+        Objects.requireNonNull(nickname);
+        validateTenLength(nickname);
+        this.nickname = nickname;
     }
 
 }
