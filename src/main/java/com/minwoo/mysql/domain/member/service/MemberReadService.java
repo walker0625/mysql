@@ -30,4 +30,11 @@ public class MemberReadService {
                 .toList();
     }
 
+    public List<MemberDto> findMembers(List<Long> ids) {
+        return memberRepository.findAllByIdIn(ids)
+                .stream()
+                .map(Member::toDto)
+                .toList();
+    }
+
 }

@@ -28,6 +28,11 @@ public class MemberController {
         return memberReadService.findMember(id);
     }
 
+    @GetMapping("/members")
+    public List<MemberDto> findMembers(@RequestParam List<Long> ids) {
+        return memberReadService.findMembers(ids);
+    }
+
     @PatchMapping("/members/{id}")
     public MemberDto updateMember(@PathVariable Long id, @RequestBody String nickname) {
         return memberWriteService.updateMember(id, nickname);
