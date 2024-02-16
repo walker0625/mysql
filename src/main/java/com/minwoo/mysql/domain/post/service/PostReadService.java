@@ -9,12 +9,9 @@ import com.minwoo.mysql.domain.post.entity.Post;
 import com.minwoo.mysql.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +30,7 @@ public class PostReadService {
     }
 
     public PageCursor<PostDto> getPostsByCursor(Long memberId, CursorRequest cursorRequest) {
-        List<PostDto> postDtos = new ArrayList<>();
+        List<PostDto> postDtos;
 
         if(cursorRequest.key() == null) {
             postDtos = postRepository.findAllByMemberWhenNoKey(memberId, cursorRequest.size())
