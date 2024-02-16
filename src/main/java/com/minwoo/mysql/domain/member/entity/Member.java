@@ -8,7 +8,6 @@ import lombok.ToString;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;

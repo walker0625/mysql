@@ -7,9 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.lang.reflect.Member;
-import java.util.Objects;
-
 @Service
 @RequiredArgsConstructor
 public class FollowWriteService {

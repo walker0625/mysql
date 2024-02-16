@@ -3,7 +3,6 @@ package com.minwoo.mysql.domain.member.controller;
 import com.minwoo.mysql.domain.member.dto.request.MemberRegisterCommand;
 import com.minwoo.mysql.domain.member.dto.response.MemberDto;
 import com.minwoo.mysql.domain.member.dto.response.MemberHistoryDto;
-import com.minwoo.mysql.domain.member.entity.Member;
 import com.minwoo.mysql.domain.member.service.MemberReadService;
 import com.minwoo.mysql.domain.member.service.MemberWriteService;
 import lombok.RequiredArgsConstructor;

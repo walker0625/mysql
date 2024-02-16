@@ -1,6 +1,5 @@
 package com.minwoo.mysql.domain.follow.controller;
 
-import com.minwoo.mysql.domain.follow.entity.Follow;
 import com.minwoo.mysql.domain.member.dto.response.MemberDto;
 import com.minwoo.mysql.usecase.CreateFollowMemberUsecase;
 import com.minwoo.mysql.usecase.GetFollowingMemberUsecase;

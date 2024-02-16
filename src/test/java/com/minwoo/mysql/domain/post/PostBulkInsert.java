@@ -2,25 +2,21 @@ package com.minwoo.mysql.domain.post;
 
 import com.minwoo.mysql.domain.post.entity.Post;
 import com.minwoo.mysql.domain.post.repository.PostJdbcTemplateRepository;
-import com.minwoo.mysql.domain.post.repository.PostRepository;
 import com.minwoo.mysql.util.PostFixtureFactory;
 import org.jeasy.random.EasyRandom;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.StopWatch;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.IntStream;
 
-@SpringBootTest
+//@SpringBootTest
 public class PostBulkInsert {
 
-    @Autowired
+    //@Autowired
     private PostJdbcTemplateRepository postJdbcTemplateRepository;
 
-   @Test
+   //@Test
    void bulkInsert() {
        EasyRandom easyRandom = PostFixtureFactory.get(4L,
                LocalDate.of(1970, 1, 1),

@@ -1,6 +1,5 @@
 package com.minwoo.mysql.util;
 
-import com.minwoo.mysql.domain.member.entity.Member;
 import com.minwoo.mysql.domain.post.entity.Post;
 import org.jeasy.random.EasyRandom;
 import org.jeasy.random.EasyRandomParameters;
