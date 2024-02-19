@@ -76,4 +76,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findAllByInMembersWithKey(@Param("memberIds") List<Long> memberIds,
                                       @Param("size") Long size,
                                       @Param("key") Long key);
+
 }

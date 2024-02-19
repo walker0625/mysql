@@ -15,8 +15,8 @@ public class TimelineWriteService {
 
     public void deliveryToTimeline(Long postId, List<Long> toMemberIds) {
         List<Timeline> timelines = toMemberIds.stream().map((toMemberId) ->
-                Timeline.builder().memberId(toMemberId).postId(postId).build())
-                .toList();
+                                   Timeline.builder().memberId(toMemberId).postId(postId).build())
+                                   .toList();
 
         timelineRepository.saveAll(timelines); // bulkInsert better
     }
