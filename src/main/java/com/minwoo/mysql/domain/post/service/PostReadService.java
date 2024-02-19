@@ -21,6 +21,11 @@ public class PostReadService {
 
     private final PostRepository postRepository;
 
+    public List<PostDto> getPostsByIdIn(List<Long> postIds) {
+        System.out.println(postIds);
+        return postRepository.findAllByIdIn(postIds).stream().map(Post::toDto).toList();
+    }
+
     public List<DailyPostCountDto> getDailyPostCount(PostCountRequest postCountRequest) {
         return postRepository.countByMemberIdAndCreatedDateBetween(postCountRequest.memberId(), postCountRequest.startDate(), postCountRequest.endDate());
     }
@@ -54,7 +59,7 @@ public class PostReadService {
                     .stream().map(Post::toDto).toList();
         }
 
-        return new PageCursor<>(cursorRequest.next(postDtos.stream().map(PostDto::id).min(Long::compareTo).orElse(null)), postDtos);
+        return new PageCursor<>(cursorRequest.next(postDtos.stream().map(PostDto::id).min(Long::compareTo).orElse(CursorRequest.NONE_KEY)), postDtos);
     }
 
 }

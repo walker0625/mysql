@@ -1,6 +1,7 @@
 package com.minwoo.mysql.domain.post.repository;
 
 import com.minwoo.mysql.domain.post.dto.response.DailyPostCountDto;
+import com.minwoo.mysql.domain.post.dto.response.PostDto;
 import com.minwoo.mysql.domain.post.entity.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +13,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
+
+    List<Post> findAllByIdIn(List<Long> postIds);
 
     Page<Post> findAllByMemberId(Long memberId, Pageable pageable);
 
@@ -73,5 +76,4 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findAllByInMembersWithKey(@Param("memberIds") List<Long> memberIds,
                                       @Param("size") Long size,
                                       @Param("key") Long key);
-
 }

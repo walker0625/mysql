@@ -7,6 +7,8 @@ public record CursorRequest(
         Long size
 ) {
 
+    public static Long NONE_KEY = -1L;
+
     public CursorRequest next(Long key) {
         return new CursorRequest(key, this.size);
     }
