@@ -43,4 +43,18 @@ public class PostReadService {
         return new PageCursor<>(cursorRequest.next(postDtos.stream().map(PostDto::id).min(Long::compareTo).orElse(null)), postDtos);
     }
 
+    public PageCursor<PostDto> getPostsByCursorAndMemberIds(List<Long> memberIds, CursorRequest cursorRequest) {
+        List<PostDto> postDtos;
+
+        if(cursorRequest.key() == null) {
+            postDtos = postRepository.findAllByInMembersWhenNoKey(memberIds, cursorRequest.size())
+                    .stream().map(Post::toDto).toList();
+        } else {
+            postDtos = postRepository.findAllByInMembersWithKey(memberIds, cursorRequest.size(), cursorRequest.key())
+                    .stream().map(Post::toDto).toList();
+        }
+
+        return new PageCursor<>(cursorRequest.next(postDtos.stream().map(PostDto::id).min(Long::compareTo).orElse(null)), postDtos);
+    }
+
 }

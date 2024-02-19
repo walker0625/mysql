@@ -9,6 +9,7 @@ import com.minwoo.mysql.domain.post.dto.response.PostDto;
 import com.minwoo.mysql.domain.post.entity.Post;
 import com.minwoo.mysql.domain.post.service.PostReadService;
 import com.minwoo.mysql.domain.post.service.PostWriteService;
+import com.minwoo.mysql.usecase.GetTimelinePostUsecase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +24,8 @@ public class PostController {
 
     private final PostWriteService postWriteService;
     private final PostReadService postReadService;
+
+    private final GetTimelinePostUsecase getTimelinePostUsecase;
 
     @PostMapping("/posts")
     public PostDto create(PostRegisterCommand command) {
@@ -42,6 +45,11 @@ public class PostController {
     @GetMapping("/posts/members/{memberId}/cursor")
     public PageCursor<PostDto> getPostsByCursor(@PathVariable Long memberId, CursorRequest cursorRequest) {
         return postReadService.getPostsByCursor(memberId, cursorRequest);
+    }
+
+    @GetMapping("/posts/members/{memberId}/timeline")
+    public PageCursor<PostDto> getTimeLines(@PathVariable Long memberId, CursorRequest cursorRequest) {
+        return getTimelinePostUsecase.execute(memberId, cursorRequest);
     }
 
 }

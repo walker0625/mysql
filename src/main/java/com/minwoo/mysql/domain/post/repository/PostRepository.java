@@ -50,4 +50,28 @@ public interface PostRepository extends JpaRepository<Post, Long> {
                                       @Param("size") Long size,
                                       @Param("key") Long key);
 
+    @Query(value = """
+                   SELECT * 
+                   FROM post
+                   WHERE memberId in :memberIds
+                   ORDER BY id DESC
+                   LIMIT :size
+                   """
+            , nativeQuery = true)
+    List<Post> findAllByInMembersWhenNoKey(@Param("memberIds") List<Long> memberIds,
+                                        @Param("size") Long size);
+
+    @Query(value = """
+                   SELECT *
+                   FROM post
+                   WHERE memberId in :memberIds
+                   AND id < :key
+                   ORDER BY id DESC
+                   LIMIT :size
+                   """
+            , nativeQuery = true)
+    List<Post> findAllByInMembersWithKey(@Param("memberIds") List<Long> memberIds,
+                                      @Param("size") Long size,
+                                      @Param("key") Long key);
+
 }
