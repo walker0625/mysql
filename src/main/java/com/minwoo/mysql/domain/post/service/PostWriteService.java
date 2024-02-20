@@ -5,6 +5,8 @@ import com.minwoo.mysql.domain.post.dto.request.PostRegisterCommand;
 import com.minwoo.mysql.domain.post.entity.Post;
 import com.minwoo.mysql.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
