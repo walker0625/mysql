@@ -13,7 +13,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class CreatePostUsecase {
 
@@ -21,6 +20,7 @@ public class CreatePostUsecase {
     private final FollowReadService followReadService;
     private final TimelineWriteService timelineWriteService;
 
+    @Transactional // follow 수가 많을 경우 connection pool 점유가 길어질 수 있음
     public void execute(PostRegisterCommand command) {
         PostDto postDto = postWriteService.create(command);
         List<Long> toMemberIds = followReadService.getFollows(postDto.memberId()).stream().map(Follow::getToMemberId).toList();
