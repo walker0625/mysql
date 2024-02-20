@@ -25,5 +25,10 @@ public class PostWriteService {
 
         return Post.toDto(postRepository.save(post));
     }
+    
+    public void likePost(Long postId) {
+        Post post = postRepository.findAndLockById(postId);
+        post.incrementLikeCount();
+    }
 
 }
