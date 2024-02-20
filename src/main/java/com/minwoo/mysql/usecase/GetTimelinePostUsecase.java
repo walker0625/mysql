@@ -9,7 +9,6 @@ import com.minwoo.mysql.domain.post.entity.Timeline;
 import com.minwoo.mysql.domain.post.service.PostReadService;
 import com.minwoo.mysql.domain.post.service.TimelineReadService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

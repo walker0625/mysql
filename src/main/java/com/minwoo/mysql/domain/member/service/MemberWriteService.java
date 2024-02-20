@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class MemberWriteService {
 
@@ -26,10 +27,13 @@ public class MemberWriteService {
                                 .birthday(command.birthday())
                               .build();
 
-        return memberRepository.save(member).toDto();
+        Member savedMember = memberRepository.save(member);
+        int error = 1/0; // ArithmeticException 발생
+        memberNicknameHistoryRepository.save(MemberNicknameHistory.toEntity(savedMember));
+
+        return savedMember.toDto();
     }
 
-    @Transactional
     public MemberDto updateMember(Long id, String nickname) {
         Member member = memberRepository.findById(id).orElseThrow();
         member.updateNickname(nickname); // update db

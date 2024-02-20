@@ -5,10 +5,12 @@ import com.minwoo.mysql.domain.post.repository.TimelineRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class TimelineWriteService {
 
     private final TimelineRepository timelineRepository;
