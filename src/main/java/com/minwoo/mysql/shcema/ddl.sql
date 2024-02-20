@@ -1,3 +1,5 @@
+use sns;
+
 create table Member
 (
     id int auto_increment,
@@ -61,6 +63,21 @@ create index POST__index_created_date
     on POST (createdDate);
 
 create index POST__index_member_id_created_date
-    on POST (member_id, createdDate);
+    on POST (memberId, createdDate);
+
+create table PostLike
+(
+    id int auto_increment,
+    memberId int not null,
+    postId int not null,
+    createdAt datetime not null,
+    constraint postlike_id_uindex
+        primary key (id)
+);
 
 
+alter table post add column likeCount int;
+
+alter table post add column version int default 0;
+
+commit;

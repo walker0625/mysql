@@ -9,6 +9,7 @@ import com.minwoo.mysql.domain.post.dto.response.PostDto;
 import com.minwoo.mysql.domain.post.entity.Post;
 import com.minwoo.mysql.domain.post.service.PostReadService;
 import com.minwoo.mysql.domain.post.service.PostWriteService;
+import com.minwoo.mysql.usecase.CreatePostLikeUsecase;
 import com.minwoo.mysql.usecase.CreatePostUsecase;
 import com.minwoo.mysql.usecase.GetTimelinePostUsecase;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ public class PostController {
 
     private final GetTimelinePostUsecase getTimelinePostUsecase;
     private final CreatePostUsecase createPostUsecase;
+    private final CreatePostLikeUsecase createPostLikeUsecase;
 
     @PostMapping("/posts")
     public PostDto create(PostRegisterCommand command) {
@@ -67,6 +69,11 @@ public class PostController {
     @PostMapping("/posts/{postId}/like")
     public void likePost(@PathVariable Long postId) {
         postWriteService.likePost(postId);
+    }
+
+    @PostMapping("/posts/{postId}/like/v2")
+    public void likePostV2(@PathVariable Long postId, @RequestParam Long memberId) {
+        createPostLikeUsecase.execute(postId, memberId);
     }
 
 }

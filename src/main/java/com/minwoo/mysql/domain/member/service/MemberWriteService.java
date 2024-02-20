@@ -28,7 +28,7 @@ public class MemberWriteService {
                               .build();
 
         Member savedMember = memberRepository.save(member);
-        int error = 1/0; // ArithmeticException 발생
+        //int error = 1/0; // ArithmeticException 발생
         memberNicknameHistoryRepository.save(MemberNicknameHistory.toEntity(savedMember));
 
         return savedMember.toDto();
